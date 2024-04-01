@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 
+        css : 구조(html)에 표현을 입히는 작업 
+        css 구성 : 선택자(selector) , 속성(property) , 속성값(value)
+        css 적용 위치 : inline(태그) , internal(내부 스타일 적용) , external(외부 스타일 적용) - link
+        css 문법 형식 : selector { 속성 : 속성값; 속성 : 속성값; 속성 : 속성값; ... }
+        기본 선택자 : 
+        - 전체선택자    : *
+        - 타입선택자    : 태그{속성선언}
+        - 클래스선택자  : .클래스이름{속성선언}
+        - 아이디선택자  : #아이디{속성선언}
+        - 속성선택자    : [속성]{속성선언}
+
+        속성 선택자 형식 :
+        - [속성] : 해당 속성이 정의된 모든 태그에 적용
+        - [속성 = 값] : 정의된 속성과 값이 동일
+        - [속성 ~= 값] : 공백이 포함하는 값 중에 주어진 값이 동일한 게 있다면 
+        - [속성 != 값] : 공백이 포함하는 값 중에 주어진 값이 다른게 있다면
+        - [속성 *= 값] : 부분문자열과의 매칭
+        - [속성 $= 값] : 속성의 주어진 값으로 끝남
+        - [속성 ^= 값] : 속성의 주어진 값으로 시작함
+
+        가상 선택자
+        : 웹 문서에서는 보이지 않지만 동작에 영향을 주는 속성 
+
+        이벤트 가상 클래스 선택자 
+        : 사용자가 마우스 이벤트 행위를 어떻게 하는지에 따라서 달라지는 속성
+        - 사용법 :
+            :link 선택자 -> 사이트에 방문하지 않았을 때 
+            :visited  -> 방문
+            :active -> 클릭
+            :hover -> 마우스 포인터를 올렸을 때 
+            :focus -> 초점이 맞춰졌을 때
+
+        
+        조합 선택자 형식 :
+        - 후손 : 선택자 A 선택자 B : 선택자 B가 선택자 A에 반드시 포함되어 있는 경우 선택
+        - 자손(직계) : 선택자 A > 선택자 B : 부모선택자 A에 직계자손인 선택자 B를 선택
+        - 인접 형제 : 선택자 A + 선택자 B
+        - 일반 형제 : 선택자 A ~ 선택자 B
+        - 그룹 : 선택자 A, 선택자 B
+    
+    -->
+    <style>
+
+        /* *{
+            color : red;
+            background-color: yellow;
+            font-size: 13px;
+        } 
+        h1{
+            background-color: pink;
+        }
+        h2{
+            background-color: aqua;
+        } */
+
+        .class01{
+            background-color: yellow;
+        }
+
+        #id01{
+            color : blueviolet;
+        }
+
+        h3[text]{
+            color : aqua;
+        }
+
+        p[text ^= "h"]{
+            color : red;
+        }
+
+        p[text *= "aa"]{
+            color : blue;
+            /* text 에 aa가 포함만 되면 됌 */
+        }
+        
+        p[text ~= "aa"]{
+            /* text 에 aa가 하나의 요소로 있어야 함 */
+            color : pink;
+        }
+        
+        /* 가상 클래스 선택자 */
+        a:link{
+            color : darkcyan;
+            text-decoration: none;
+        }
+        a:visited{
+            color : blue;
+        }
+        a:hover{
+            background-color: black;
+        }
+        /* 클릭하려고 할 때는, focus 이고, 마우스를 위치시켰을 때는 hover임 */
+        a:focus{
+            background-color: orange;
+        }
+
+        /*  후손  */
+
+        div ul {
+            background-color: aliceblue;
+        }
+
+        div h2{
+            color: rebeccapurple;
+        }
+
+        /*  자손 : 자손은 후손에 포함되는데, 직계를 찾아감 */
+
+        div > h3 > sno{
+            color : skyblue;
+        }
+
+        /* 인접형제 선택자(+)  html 순서대로 h4, h5, ul 순으로 코드를 작성해야 함 */
+        div#adjcent > h4 + h5 + ul{
+            color : blue;
+        }
+
+        /* 그룹 */
+        p, h6{
+            color : yellowgreen;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <h1 class = "class01">Universal Selector</h1>
+    <h2 id = "id01">dddddddd</h2>
+    <h3 text = "attr01">kkkkkkkkkk</h3>
+
+    <!-- 속성의 값이 hello 컬러를 red로 표현 -->
+
+    <p text = "hello">모든 텍스트</p>
+    <p text = "e">모든 텍스트</p>
+    <p text = "aa bb cc">리스트 매칭 속성</p>
+    <p text = "aa-bb-cc">공백을 포함하는게 </p>
+
+    <!-- 가상 이벤트 선택자 -->
+    <p><a href="http://www.naver.com">마우스 이벤트에 따른 링크의 변화</a></p>
+
+    <div>
+        <h2>후손(Descendant Selector) 선택자</h2>
+        <ul>
+            <li>후손(01)</li>
+            <li>후손(02)</li>
+        </ul>
+    </div>
+
+
+    <div id = "adjcent">
+        <h2>자손 선택자(Child Selector)</h2>
+        
+        <h3>
+            <sno>1992</sno>
+            <std>임정섭</std>
+            <tel>
+                <office>00-0000-0000</office><br/>
+                <phone>000-0000-0000</phone>
+            </tel>
+        </h3>
+
+        <h4>인접형제 (+)</h4>
+        <h5>인접형제 (+)</h5>
+        <ul>
+            <li>대분류</li>
+            <li>중분류</li>
+            <li>소분류</li>
+        </ul>
+    </div>
+    <h4>인접형제 선택자에 의한 스타일 적용</h4>
+
+    <h6>그룹 선택</h6>
+</body>
+
+</html>

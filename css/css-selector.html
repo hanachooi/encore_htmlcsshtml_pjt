@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        tag, class, id, group, *
+        */
+        /* Tag selector */
+        h2 {
+        }
+        p {
+        }
+        /* Class selector */
+        .red-text{
+        }
+        .blue-text{
+        }
+        /* Id selector */
+        #title {
+        }
+        /* Group selector */
+        h1, h2{
+            text-align: center;
+        }
+        /* 속성이 존재하는 요소에 스타일 적용 */
+        h3[class]{
+            font-size : 30px;
+        }
+        [class = "encore-title"]{
+            color : greenyellow;
+        }
+        [class = "hanwha-title"]{
+            color : green;
+        }
+        [target]{
+            color : deeppink;
+        }
+        [href*='www']{
+            text-decoration: none;
+        }
+        a[href^='google']{
+            text-decoration: none;
+        }
+        a[href$='vue']{
+            text-decoration: none;
+        }
+        h4[class ~= 'title']{
+            color : blue;
+            font-weight : 300;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Internal style document 적용 -->
+    <h1 id = "title">타이틀</h1>
+    <!-- 각 spane tag red-text selector 적용해본다면? -->
+    <p>
+        <h1>애국가</h1>
+        <hr/>
+        <h2>1절</h2>
+        <span class = "blue-text">동해</span>물과
+        <span class = "red-text">백두산</span>이 마르고 닳도록<br>
+        하느님이 보우하사 우리나라 만세 <br>
+        무궁화 삼천리 화려 강산 <br>
+        대한사람, <span>대한</span>으로 길이 보전하세.
+    </p>
+    <hr/>
+    <h3 class = "encore-title">스타일 적용될 예정</h3>
+    <h3>스타일 적용이 안됌.</h3>
+    <h3 class = "hanwha-title">스타일 적용될 예정</h3>
+    <hr/>
+    <a href = "http://google.com" target = "_blank">구글</a><br/>
+    <a href = "http://www.naver.com">네이버</a><br/>
+    <a href = "https://vuejs.org">Vue.js</a><br/>
+    <hr/>
+    <h4 class = "vuejs-title">뷰 공식사이트</h4>
+
+    <!-- 보통 id는 스크립트가 접근하기 위한 것임. -->
+
+
+</body>
+</html>
