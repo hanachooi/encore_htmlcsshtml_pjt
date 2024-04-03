@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 문자열 내장 객체의 함수
+        let str = "뜰에는 망아지가 있다.";
+        console.log("indexOf , " , str.indexOf('망'));
+        console.log("startsWith , " , str.startsWith('망아지'));
+        console.log("endswith , " , str.endsWith('.'));
+        console.log('charAt(1) : ', str.charAt(1), "typeof ", typeof str.charAt(1));
+        console.log("substr , " , str.substr(6, 4));    // 문자 개수만큼 가져옴
+        console.log("substring , " , str.substring(4, 6));  // n-1 까지 가져옴
+        console.log("length : " , str.length);
+        console.log("concat : ", str.concat("dd"));
+
+        // Array
+        // push, pop  
+        let ary = [];
+        ary.push(1); ary.push(2); ary.push(3);
+
+        console.log("스택");
+        console.log(ary.pop()); // 3,2,1 출력
+        console.log(ary.pop());
+        console.log(ary.pop());
+
+        ary.push(1); ary.push(2); ary.push(3);
+        console.log("큐")
+        console.log(ary.shift()); // 1,2,3 출력
+        console.log(ary.shift());
+        console.log(ary.shift());
+
+        
+
+    </script>
+</body>
+</html>
