@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        매개변수 정리(ES6)
+        - 매개변수 정의시 default parameter 정의할 수 있다.
+     -->
+     <script>
+        function encore(param01=1, param02={}, param03='encore'){
+            console.log(param01,param02, param03);
+        }
+        encore();
+        encore(30, {name : "jslim"} , "hanhwa");
+        encore(30, {name : "jslim"} , null);
+
+        function showUserInfo(height, weight, age){
+            var h = height || 180;
+            var w = weight || 60;
+            var a = age ?? 24;
+            console.log(h,w,a);
+        }
+        showUserInfo();
+        showUserInfo(277, 72, 40);
+        showUserInfo(177, 74 , null);
+
+        ///////////////////////////////
+        // Optional Channing
+        // 객체 속성값의 유효성을 체크할 수 있다.
+        // 평가의 대상은 null, undefined -> undefined 반환
+        // ?. (연산자)
+        // 함수의 존재유무를 확인할 때도 사용함. 
+
+        const userObj = {
+            name : {
+                firstName : "길동",
+                lastName : "홍"
+            },
+            address : {
+                postCode : "XXXX",
+                city : "seoul"
+            },
+            getInfo : () => userObj
+        };
+
+        console.log(">>>>>>>>>> postCode에 접근한다면?")
+        // 기존 문법
+        //console.log(userObj.address.postCode);
+
+        // optional 문법
+        const code = userObj.address?.postCode;
+        console.log(code);
+
+        // 함수 호출
+        console.log(">>>> , " , userObj.getInfo());
+        // userObj에 없는 함수를 호출 했을 때, 스크립트가 실행이 안되는 걸 방지하기
+        // 위해서, userObj.setInfo?.() 과 같은 방식으로 코드를 작성해야함. 
+        console.log(userObj.setInfo?.());
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.");
+     </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- document -->
+    <button id = "btn">SAVE</button>
+
+    <script>
+        /*
+        this : 본래 document에 있는 컴포넌트를 지칭하는 키워드로 사용
+        this : script 내에서 객체를 지칭하는 키워드 
+        만약, 화살표함수에서 this 상위스코프를 의미하게 된다.
+        */
+        const obj = {
+            name : "encore",
+            msg : "sw camp 5th",
+            printThis(){
+                console.log("instance의 this => " ,this);
+                const innerFunc = () => {
+                    return this;
+                };
+                console.log("innerFunc의 this => " , innerFunc());
+            }
+        };
+
+        /*
+        객체(obj): name과 msg 속성을 가진 객체를 정의하였습니다.
+        printThis() 메서드: 객체 내부에 printThis라는 메서드를 정의하였습니다. 
+        이 메서드는 객체 자신을 콘솔에 출력하고, 
+        innerFunc이라는 내부 함수를 정의한 후 이를 콘솔에 출력합니다. 
+        내부 함수 innerFunc는 화살표 함수로 정의되어 있으며, 
+        화살표 함수는 외부 함수의 this를 그대로 유지합니다.
+        이 코드는 객체의 메서드 내에서 화살표 함수를 사용하여 
+        this가 객체 자신을 참조하도록 하고 있습니다. 
+        일반 함수 내에서는 내부 함수의 this는 전역 객체(window)를 참조하게 되지만,
+         화살표 함수는 자신을 감싸는 함수의 this를 유지합니다.
+        */
+
+        console.log(obj.name);
+        console.log(obj.msg);
+        obj.printThis();
+
+        ////////////////// setTimeout() : 클라이언트 폴링의 개념에서 사용됨
+        // setTimeout() this -> window
+        // 원래는 상위 스코프를 의미하는데, es6에서는, allow function 과 일반 function 에 따라,
+        // 결과값이 다르게 된다. 
+        const timeObj = {
+            name : "encore",
+            msg : "sw camp ",
+            getThisArrowFunc : function(){
+                console.log("function , " , this);
+                setTimeout(() => {
+                    console.log("arrow function , " , this);
+                } , 1000);
+            },
+            getFunc : function(){
+                console.log("function , " , this);
+                setTimeout(function() {
+                    console.log("this function , " , this);
+                } , 1000 );
+            }
+        };
+
+        console.log(" >>>>>>> setTimeout this  ");
+        timeObj.getThisArrowFunc();
+        timeObj.getFunc();
+
+        const btn = document.getElementById("btn");
+        console.log("> btn , " , btn.innerText);
+        btn.innerText = "함수 호출 버튼";
+
+        btn.addEventListener("click", () => {
+            // allow function 이니깐, true가 나옴. 
+            console.log(this === window);
+        });
+
+        // enhanced Object Literal
+        console.log("속성과 값이 같으면 축약문법 사용이 가능");
+        let language = "javascript";
+        const literalObj = {
+            language,
+            coding() {
+                console.log("Hanwha SW Camp 5th");
+            }
+        };
+    
+        console.log(literalObj.language);
+        literalObj.coding();
+
+
+        /// Spread Operator
+        /// { ... xxx }
+        const spreadObj = {
+            name : "jslim",
+            age : 20,
+            address : "seoul"
+        };
+
+        const tmpObj = {
+            name : spreadObj.name,
+            age : spreadObj.age,
+            address : spreadObj.address
+        };
+        console.log("기존 복사 방식 === " , tmpObj === spreadObj);
+
+        // 객체 복사
+        let spreadNewObj = { ...spreadObj };
+        console.log("spread operator, ", spreadObj);
+        console.log("spread operator, ", spreadNewObj);
+        console.log("새로운 복사 방식 === ", spreadObj === spreadNewObj);
+
+
+        // 구조 분해 문법 (Destructuring)
+        /*
+        vue.js
+        import { a, b } from xxxxx.js(a(), b(), c(), d())
+        let { a , b } = destructObj; 이런 형태로 사용 함. 
+        */
+
+        const destructObj = {
+            a : 10, b : 20, c: 30
+        };
+        const destructAry = [1,2,3,4,5]
+
+        let { a , b } = destructObj;
+        console.log("Destructuring >>>  obj , " , a , b);
+
+    </script>
+
+</body>
+</html>
